@@ -347,12 +347,14 @@ endif
 # ARM32 hell -- use conservative CFLAGS
 ifeq ($(ZT_ARCHITECTURE),3)
 #	ifeq ($(shell if [ -e /usr/bin/dpkg ]; then dpkg --print-architecture; fi),armel)
-		override CFLAGS+=-march=armv5t -mfloat-abi=soft -msoft-float -mno-unaligned-access -marm
-		override CXXFLAGS+=-march=armv5t -mfloat-abi=soft -msoft-float -mno-unaligned-access -marm
+#		override CFLAGS+=   -march=armv5t  -mfloat-abi=soft -marm -mno-unaligned-access -msoft-float
+#		override CXXFLAGS+= -march=armv5t  -mfloat-abi=soft -marm -mno-unaligned-access -msoft-float
+		override CFLAGS+=   -march=armv7-a  -mfloat-abi=soft -marm -mno-unaligned-access -msoft-float
+		override CXXFLAGS+= -march=armv7-a  -mfloat-abi=soft -marm -mno-unaligned-access -msoft-float
 		ZT_USE_ARM32_NEON_ASM_CRYPTO=0
 #	else
-#		override CFLAGS+=-mfloat-abi=hard -march=armv6zk -marm -mfpu=vfp -mno-unaligned-access -mtp=cp15 -mcpu=arm1176jzf-s
-#		override CXXFLAGS+=-mfloat-abi=hard -march=armv6zk -marm -mfpu=vfp -fexceptions -mno-unaligned-access -mtp=cp15 -mcpu=arm1176jzf-s
+#		override CFLAGS+=   -march=armv6zk -mfloat-abi=hard -marm -mno-unaligned-access -mcpu=arm1176jzf-s -mfpu=vfp-mtp=cp15
+#		override CXXFLAGS+= -march=armv6zk -mfloat-abi=hard -marm -mno-unaligned-access -mcpu=arm1176jzf-s -mfpu=vfp -fexceptions -mtp=cp15
 #		ZT_USE_ARM32_NEON_ASM_CRYPTO=0
 #	endif
 endif
